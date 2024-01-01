@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clima Web</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cards.css' %}">
+    <link rel="stylesheet" href="{% static 'css/search.css' %}">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+        }
+
+        form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .card {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .error-message {
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        #map {
+            height: 300px;
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+    </style>
+</head>
+<body>
+    <h1>CLIMA</h1><br>
+    <form>
+        <input name="cidade" type="text" id="cityInput" placeholder="Digite o nome da cidade">
+        <button type="submit">Pesquisar</button>
+    </form>
+    <div class="card">
+        <div class="card_heard">
+            <div class="container">
+                <div class="cloud front">
+                  <span class="left-front"></span>
+                  <span class="right-front"></span>
+                </div>
+                <span class="sun sunshine"></span>
+                <span class="sun"></span>
+                <div class="cloud back">
+                  <span class="left-back"></span>
+                  <span class="right-back"></span>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+        {% if error_message %}
+            <div class="error-message">
+                {{ error_message }}
+            </div>
+        {% else %}
+            <strong>Cidade:</strong> {{nome}}<br>
+            <strong>Clima:</strong> {{clima}}<br>
+            <strong>Humidade:</strong> {{humidade}}<br>
+            <strong>Temperatura:</strong> {{temperatura}} C°<br>
+            <strong>Localização (Latitude, Longitude):</strong> 
+            {% for row in localizacao.values %}
+                {{row}}
+            {% endfor %}<br>
+            <a href="{{ map_file_path }}" target="_blank">Ver Mapa</a>
+        {% endif %}
+        </div>
+    </div>
+</body>
+</html>
