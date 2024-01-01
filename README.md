@@ -1,7 +1,7 @@
 # Web Climate
 
-<img src="media/home.png" width="40%" style="margin-right: 10px;">
-<img src="media/map.png" width="40%">
+<img src="utils/screens/home.png" width="40%" style="margin-right: 10px;">
+<img src="utils/screens/map.png" width="40%">
 
 
 
